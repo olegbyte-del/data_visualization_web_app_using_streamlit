@@ -34,7 +34,21 @@ if selected_files:
     
     col1, col2 = st.columns(2) # The number of columns depends on the number you put
     
+    columns = df.columns.tolist()
+    
     with col1:
         st.write("")
         st.write(df.head())
-    
+
+    with col2:
+        # User selection of df columns
+        x_axis = st.selectbox("Select the X-axis", options = columns + ["None"])
+        y_axis = st.selectbox("Select the Y-axis", options = columns + ["None"])
+        
+        plot_list = ["Line Plot", "Bar Chart", "Scatter PLot", "Distribution Plot", "Count Plot"]
+        
+        selected_plot = st.selectbox("Select a pot", options=plot_list)
+        
+        st.write(x_axis, y_axis)
+        st.write(x_axis, y_axis)
+        st.write(x_axis, y_axis)
