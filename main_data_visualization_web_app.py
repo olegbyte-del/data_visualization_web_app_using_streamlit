@@ -45,7 +45,7 @@ if selected_files:
         x_axis = st.selectbox("Select the X-axis", options = columns + ["None"], index=None)
         y_axis = st.selectbox("Select the Y-axis", options = columns + ["None"], index=None)
         
-        plot_list = ["Line Plot", "Bar Chart", "Scatter PLot", "Distribution Plot", "Count Plot"]
+        plot_list = ["Line Plot", "Bar Chart", "Scatter Plot", "Distribution Plot", "Count Plot"]
         
         selected_plot = st.selectbox("Select a pot", options=plot_list, index = None)
         
@@ -56,7 +56,7 @@ if selected_files:
 # button to generate plots
 if st.button("Generate Plot"):
     
-    fig, ax = plt.subplot(figsize = (6, 4))
+    fig, ax = plt.subplots(figsize=(6, 4))
     
     if selected_plot == "Line Plot":
         sns.lineplot(x = df[x_axis], y = df[y_axis], ax=ax)
@@ -68,10 +68,10 @@ if st.button("Generate Plot"):
         sns.scatterplot(x = df[x_axis], y = df[y_axis], ax=ax)
         
     elif selected_plot == "Distribution Plot":
-        sns.histplot(df[x_axis], kde=True, ax=ax)
+        sns.histplot(x=df[x_axis], kde=True, ax=ax)
     
     elif selected_plot == "Count Plot":
-        sns.countplot(df[x_axis], kde=True, ax=ax)
+        sns.countplot(x=df[x_axis], kde=True, ax=ax)
     
     # adjust label sizes
     ax.tick_params(axis="x", labelsize = 10)
