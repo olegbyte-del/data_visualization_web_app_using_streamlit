@@ -24,21 +24,21 @@ files_list = [f for f in os.listdir((folder_path)) if f.endswith(".csv")] #Retur
 # Dropdown for all the files 
 selected_files = st.selectbox("Select a file", files_list, index=None) # Adds a button to chose the file list index is default
 
-if selected_files:
+if selected_files: 
     
     # Get the complete file of the selected file
     file_path = os.path.join(folder_path, selected_files)
     
     # Reading the csv files as a pandas dataframe
-    df = pd.read_csv(file_path)
+    selected_dataframe = pd.read_csv(file_path)
     
     col1, col2 = st.columns(2) # The number of columns depends on the number you put
     
-    columns = df.columns.tolist()
+    columns = selected_dataframe.columns.tolist()
     
     with col1:
         st.write("")
-        st.write(df.head())
+        st.write(selected_dataframe.head())
 
     with col2:
         # User selection of df columns
@@ -59,19 +59,19 @@ if st.button("Generate Plot"):
     fig, ax = plt.subplots(figsize=(6, 4))
     
     if selected_plot == "Line Plot":
-        sns.lineplot(x = df[x_axis], y = df[y_axis], ax=ax)
+        sns.lineplot(x = selected_dataframe[x_axis], y = selected_dataframe[y_axis], ax=ax)
     
     elif selected_plot == "Bar Chart":
-        sns.barplot(x = df[x_axis], y = df[y_axis], ax=ax)
+        sns.barplot(x = selected_dataframe[x_axis], y = selected_dataframe[y_axis], ax=ax)
         
     elif selected_plot == "Scatter Plot":
-        sns.scatterplot(x = df[x_axis], y = df[y_axis], ax=ax)
+        sns.scatterplot(x = selected_dataframe[x_axis], y = selected_dataframe[y_axis], ax=ax)
         
     elif selected_plot == "Distribution Plot":
-        sns.histplot(x=df[x_axis], kde=True, ax=ax)
+        sns.histplot(x=selected_dataframe[x_axis], kde=True, ax=ax)
     
     elif selected_plot == "Count Plot":
-        sns.countplot(x=df[x_axis], kde=True, ax=ax)
+        sns.countplot(x=selected_dataframe[x_axis], kde=True, ax=ax)
     
     # adjust label sizes
     ax.tick_params(axis="x", labelsize = 10)
