@@ -42,13 +42,21 @@ if selected_files:
 
     with col2:
         # User selection of df columns
-        x_axis = st.selectbox("Select the X-axis", options = columns + ["None"])
-        y_axis = st.selectbox("Select the Y-axis", options = columns + ["None"])
+        x_axis = st.selectbox("Select the X-axis", options = columns + ["None"], index=None)
+        y_axis = st.selectbox("Select the Y-axis", options = columns + ["None"], index=None)
         
         plot_list = ["Line Plot", "Bar Chart", "Scatter PLot", "Distribution Plot", "Count Plot"]
         
-        selected_plot = st.selectbox("Select a pot", options=plot_list)
+        selected_plot = st.selectbox("Select a pot", options=plot_list, index = None)
         
-        st.write(x_axis, y_axis)
-        st.write(x_axis, y_axis)
-        st.write(x_axis, y_axis)
+        st.write(x_axis)
+        st.write(y_axis)
+        st.write(selected_files)
+        
+# button to generate plots
+if st.button("Generate Plot"):
+    
+    fig, ax = plt.subplot(figsize = (6, 4))
+    
+    if selected_plot == "Line Plot":
+        sns.lineplot(x = df[x_axis], y = df[y_axis], ax=ax)
