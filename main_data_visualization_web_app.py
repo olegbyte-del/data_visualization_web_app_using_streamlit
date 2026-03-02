@@ -24,3 +24,4 @@ files_list = [f for f in os.listdir((folder_path)) if f.endswith(".csv")] #Retur
 # Dropdown for all the files 
 selected_files = st.selectbox("Select a file", files_list, index=None) # Adds a button to chose the file list index is default
 
+st.write(selected_files) # Shows the selected file under it
