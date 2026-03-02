@@ -60,3 +60,28 @@ if st.button("Generate Plot"):
     
     if selected_plot == "Line Plot":
         sns.lineplot(x = df[x_axis], y = df[y_axis], ax=ax)
+    
+    elif selected_plot == "Bar Chart":
+        sns.barplot(x = df[x_axis], y = df[y_axis], ax=ax)
+        
+    elif selected_plot == "Scatter Plot":
+        sns.scatterplot(x = df[x_axis], y = df[y_axis], ax=ax)
+        
+    elif selected_plot == "Distribution Plot":
+        sns.histplot(df[x_axis], kde=True, ax=ax)
+    
+    elif selected_plot == "Count Plot":
+        sns.countplot(df[x_axis], kde=True, ax=ax)
+    
+    # adjust label sizes
+    ax.tick_params(axis="x", labelsize = 10)
+    ax.tick_params(axis="y", labelsize = 10)
+    
+    # title axes labels
+    
+    plt.title(f"{selected_plot} of {y_axis} vs {x_axis}", fontsize = 12)
+    plt.xlabel(x_axis, fontsize = 10)
+    plt.ylabel(y_axis, fontsize = 10)
+    
+    st.pyplot(fig)
+    
