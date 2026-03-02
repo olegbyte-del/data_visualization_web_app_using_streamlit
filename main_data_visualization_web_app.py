@@ -24,4 +24,17 @@ files_list = [f for f in os.listdir((folder_path)) if f.endswith(".csv")] #Retur
 # Dropdown for all the files 
 selected_files = st.selectbox("Select a file", files_list, index=None) # Adds a button to chose the file list index is default
 
-st.write(selected_files) # Shows the selected file under it
+if selected_files:
+    
+    # Get the complete file of the selected file
+    file_path = os.path.join(folder_path, selected_files)
+    
+    # Reading the csv files as a pandas dataframe
+    df = pd.read_csv(file_path)
+    
+    col1, col2 = st.columns(2) # The number of columns depends on the number you put
+    
+    with col1:
+        st.write("")
+        st.write(df.head())
+    
